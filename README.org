@@ -1,0 +1,46 @@
+#+title: mw-lookup
+#+author: Ziqin Gong
+
+* Usage
+#+begin_src
+Quick lookup using Merriam-Webster Collegiate Dictionary API
+
+Usage: mw-lookup [OPTIONS] <WORD>
+
+Arguments:
+  <WORD>  Word to be looked up
+
+Options:
+  -r, --raw                Output raw text
+      --api-key <API_KEY>  Pass API key
+  -h, --help               Print help
+  -V, --version            Print version
+#+end_src
+
+You can also pass  your [[https://www.dictionaryapi.com][Merriam-Webster Dictionary API]] key via the environment variable ~MW_API_KEY~:
+#+begin_src shell
+export MW_API_KEY="My API Key"
+mw-lookup word
+#+end_src
+
+So far, ~mw-lookup~ can only output short definitions, but you can get the whole response by the
+~--raw~ option. Also, ~mw-lookup~ doesn't support words not in the dictionary. In the future I will
+try to make it print spelling suggestions returned by the API.
+
+* Installation
+** Requirements
+Rust (~cargo~).
+
+** Building
+#+begin_src shell
+cargo build --release
+#+end_src
+
+A built executable ~mw-lookup~ can be found in ~target/release/~.
+
+** Installation
+#+begin_src shell
+cargo install --path . --locked
+#+end_src
+
+This will install ~mw-lookup~ into ~cargo~'s bin folder (~$HOME/.cargo/bin~ by default).
